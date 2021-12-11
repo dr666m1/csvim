@@ -32,3 +32,5 @@ function! s:SetColumnWidth(width)
   setlocal filetype=csv
 endfunction
 command! -nargs=1 CSVimSetColumnWidth call <SID>SetColumnWidth(<f-args>)
+
+inoremap <buffer> , <c-v><tab>
