@@ -6,3 +6,4 @@ setlocal list
 let &l:listchars = empty(&listchars)
   \ ? 'tab:, '
   \ : &listchars . ',tab:, '
+setlocal conceallevel=2

@@ -2,9 +2,11 @@ if exists('b:current_syntax')
   finish
 endif
 
-" https://blog.delphinus.dev/2011/02/use-vim-conceal.html
-syntax region csvValue start=/\v(\t)@<=[^\t]/ start=/\v^[^\t]/ end=/\v(\t)@=/ end=/\v$/
-highlight link csvSeparator Operator
-highlight link csvValue Constant
+execute
+  \ 'syntax region csvConcealed start=/\v(\t[^\t]{'
+  \ . string(exists('g:csvim_column_width') ? g:csvim_column_width - 2 : 8)
+  \ . '})@<=[^\t]/ start=/\v(^[^\t]{'
+  \ . string(exists('g:csvim_column_width') ? g:csvim_column_width - 2 : 8)
+  \ . '})@<=[^\t]/ end=/\v(\t)@=/ end=/\v$/ conceal cchar=»'
 
 let b:current_syntax = 'csv'
